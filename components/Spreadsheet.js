@@ -32,7 +32,7 @@ class Spreadsheet extends React.Component {
 
         return (
             <div className='spreadsheet'>
-                <h1>My little spreadsheet</h1>
+                <h1>Reactable Cells</h1>
 
                 <div className='spreadsheet__buttons'>
                     <button onClick={this.handleAddColumn}>Add Column</button>
