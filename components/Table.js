@@ -7,26 +7,32 @@ class Table extends React.Component {
 
     render () {
 
-        const { rows } = this.props
-        const renderRows = rows.map((rowInfo, index) =>
-            <Row key={index} rowInfo={rowInfo} />
-        )
+        const { table, onBlur, onChange, onFocus } = this.props
 
         return (
-            <table className="table">
-                <thead>
-                    <tr>
-                        <th>Weather</th>
-                        <th>City</th>
-                        <th>Country</th>
-                    </tr>
-                </thead>
+            <table className="table" onBlur={onBlur}>
                 <tbody>
-                    {renderRows}
+                    {
+                        table.map((row, rowIndex) =>
+                            <Row
+                                key={rowIndex}
+                                row={row}
+                                onChange={onChange.bind(null, rowIndex)}
+                                onFocus={onFocus.bind(null, rowIndex)}
+                            />
+                        )
+                    }
                 </tbody>
             </table>
         )
     }
+}
+
+Table.propTypes = {
+    table: React.PropTypes.array.isRequired,
+    onBlur: React.PropTypes.func.isRequired,
+    onFocus: React.PropTypes.func.isRequired,
+    onChange: React.PropTypes.func.isRequired,
 }
 
 module.exports = Table;

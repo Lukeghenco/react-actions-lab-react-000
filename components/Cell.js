@@ -6,18 +6,23 @@ class Cell extends React.Component {
 
     render () {
 
-        const { data } = this.props
-
-        console.log(data)
+        const { cell, onChange, onFocus } = this.props
 
         return (
-            <td>{data}</td>
+            <td className="cell">
+                <input
+                    type="text"
+                    value={cell}
+                    onChange={onChange}
+                    onFocus={onFocus}
+                />
+            </td>
         )
     }
 }
 
 Cell.propTypes = {
-    data: React.PropTypes.string.isRequired
+    cell: React.PropTypes.string.isRequired
 }
 
 module.exports = Cell;

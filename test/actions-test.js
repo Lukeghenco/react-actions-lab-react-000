@@ -15,8 +15,8 @@ describe('actions', function () {
 
       const table = [['']];
       const component = { setState, state: { table } };
-      const ev = { preventDefault };
-      actions.addColumn.call(component, ev);
+      const event = { preventDefault };
+      actions.addColumn.call(component, event);
       sinon.assert.calledOnce(preventDefault);
     });
 
@@ -30,14 +30,14 @@ describe('actions', function () {
         ['2-0', '2-1']
       ];
       const component = { setState, state: { table } };
-      const ev = { preventDefault };
-      actions.addColumn.call(component, ev);
+      const event = { preventDefault };
+      actions.addColumn.call(component, event);
       sinon.assert.calledWith(setState, {
         table: [
           ['0-0', '0-1', ''],
           ['1-0', '1-1', ''],
           ['2-0', '2-1', '']
-        ] 
+        ]
       });
     });
   });
@@ -53,8 +53,8 @@ describe('actions', function () {
 
       const table = [['']];
       const component = { setState, state: { table } };
-      const ev = { preventDefault };
-      actions.addRow.call(component, ev);
+      const event = { preventDefault };
+      actions.addRow.call(component, event);
       sinon.assert.calledOnce(preventDefault);
     });
 
@@ -68,8 +68,8 @@ describe('actions', function () {
         ['2-0', '2-1']
       ];
       const component = { setState, state: { table } };
-      const ev = { preventDefault };
-      actions.addRow.call(component, ev);
+      const event = { preventDefault };
+      actions.addRow.call(component, event);
       sinon.assert.calledWith(setState, {
         table: [
           ['0-0', '0-1'],
@@ -92,8 +92,8 @@ describe('actions', function () {
 
       const table = [['']];
       const component = { setState, state: { table } };
-      const ev = { preventDefault, target: { value: '' } };
-      actions.changeCell.call(component, 0, 0, ev);
+      const event = { preventDefault, target: { value: '' } };
+      actions.changeCell.call(component, 0, 0, event);
       sinon.assert.notCalled(preventDefault);
     });
 
@@ -107,7 +107,7 @@ describe('actions', function () {
         ['2-0', '2-1']
       ];
       const component = { setState, state: { table } };
-      const ev = {
+      const event = {
         preventDefault,
         target: {
           value: 'updated cell'
@@ -115,13 +115,13 @@ describe('actions', function () {
       };
       const rowIndex = 2;
       const columnIndex = 1;
-      actions.changeCell.call(component, rowIndex, columnIndex, ev);
+      actions.changeCell.call(component, rowIndex, columnIndex, event);
       sinon.assert.calledWith(setState, {
         table: [
           ['0-0', '0-1'],
           ['1-0', '1-1'],
           ['2-0', 'updated cell']
-        ] 
+        ]
       });
     });
   });
@@ -136,8 +136,8 @@ describe('actions', function () {
       const preventDefault = sinon.spy();
 
       const component = { setState, state: {} };
-      const ev = { preventDefault };
-      actions.focusCell.call(component, 0, 0, ev);
+      const event = { preventDefault };
+      actions.focusCell.call(component, 0, 0, event);
       sinon.assert.notCalled(preventDefault);
     });
 
@@ -165,8 +165,8 @@ describe('actions', function () {
       const preventDefault = sinon.spy();
 
       const component = { setState, state: {} };
-      const ev = { preventDefault };
-      actions.blurCell.call(component, ev);
+      const event = { preventDefault };
+      actions.blurCell.call(component, event);
       sinon.assert.notCalled(preventDefault);
     });
 
@@ -193,8 +193,8 @@ describe('actions', function () {
 
       const table = [[''], ['']];
       const component = { setState, state: { table } };
-      const ev = { preventDefault };
-      actions.removeRow.call(component, ev);
+      const event = { preventDefault };
+      actions.removeRow.call(component, event);
       sinon.assert.calledOnce(preventDefault);
     });
 
@@ -208,8 +208,8 @@ describe('actions', function () {
         ['2-0', '2-1']
       ];
       const component = { setState, state: { table } };
-      const ev = { preventDefault };
-      actions.removeRow.call(component, ev);
+      const event = { preventDefault };
+      actions.removeRow.call(component, event);
       sinon.assert.calledWith(setState, {
         table: [
           ['0-0', '0-1'],
@@ -226,8 +226,8 @@ describe('actions', function () {
         ['0-0', '0-1']
       ];
       const component = { setState, state: { table } };
-      const ev = { preventDefault };
-      actions.removeRow.call(component, ev);
+      const event = { preventDefault };
+      actions.removeRow.call(component, event);
       sinon.assert.notCalled(setState);
     });
   });
@@ -243,12 +243,12 @@ describe('actions', function () {
 
       const table = [[''], ['']];
       const component = { setState, state: { table } };
-      const ev = { preventDefault };
-      actions.removeColumn.call(component, ev);
+      const event = { preventDefault };
+      actions.removeColumn.call(component, event);
       sinon.assert.calledOnce(preventDefault);
     });
 
-    it('should remove row from table', function () {
+    it('should remove column from table', function () {
       const setState = sinon.spy();
       const preventDefault = sinon.stub();
 
@@ -258,8 +258,8 @@ describe('actions', function () {
         ['2-0', '2-1']
       ];
       const component = { setState, state: { table } };
-      const ev = { preventDefault };
-      actions.removeColumn.call(component, ev);
+      const event = { preventDefault };
+      actions.removeColumn.call(component, event);
       sinon.assert.calledWith(setState, {
         table: [
           ['0-0'],
@@ -279,8 +279,8 @@ describe('actions', function () {
         ['2-0']
       ];
       const component = { setState, state: { table } };
-      const ev = { preventDefault };
-      actions.removeColumn.call(component, ev);
+      const event = { preventDefault };
+      actions.removeColumn.call(component, event);
       sinon.assert.notCalled(setState);
     });
   });

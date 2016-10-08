@@ -7,24 +7,29 @@ class Row extends React.Component {
 
     render () {
 
-        const { rowInfo } = this.props
+        const { row, onBlur, onChange, onFocus } = this.props
+
+        const cells = row.map((cell, columnIndex) =>
+            <Cell
+                key={columnIndex}
+                cell={cell}
+                onChange={onChange.bind(null, columnIndex)}
+                onFocus={onFocus.bind(null, columnIndex)}
+            />
+        )
 
         return (
             <tr className="row">
-                <Cell data={rowInfo.weather} />
-                <Cell data={rowInfo.city} />
-                <Cell data={rowInfo.country} />
+                {cells}
             </tr>
         )
     }
 }
 
 Row.propTypes = {
-    rowInfo: React.PropTypes.shape({
-        weather: React.PropTypes.string.isRequired,
-        city: React.PropTypes.string.isRequired,
-        country: React.PropTypes.string.isRequired
-    })
+    row: React.PropTypes.array,
+    onFocus: React.PropTypes.func.isRequired,
+    onChange: React.PropTypes.func.isRequired,
 }
 
 module.exports = Row;
